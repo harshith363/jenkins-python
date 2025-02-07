@@ -15,19 +15,19 @@ pipeline {
         stage('Setup Python Virtual Environment') {
             steps {
                 sh 'python3 -m venv $VENV_DIR'  // Create virtual environment
-                sh 'source $VENV_DIR/bin/activate && pip install --upgrade pip'  // Activate venv and upgrade pip
+                sh '. $VENV_DIR/bin/activate && pip install --upgrade pip'  // Activate venv and upgrade pip
             }
         }
 
         stage('Install Dependencies') {
             steps {
-                sh 'source $VENV_DIR/bin/activate && pip install -r requirements.txt'
+                sh '. $VENV_DIR/bin/activate && pip install -r requirements.txt'
             }
         }
 
         stage('Run Python Script') {
             steps {
-                sh 'source $VENV_DIR/bin/activate && python script.py'
+                sh '. $VENV_DIR/bin/activate && python script.py'
             }
         }
     }
